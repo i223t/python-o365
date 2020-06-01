@@ -1121,6 +1121,9 @@ class Folder(DriveItem):
             except Exception as e:
                 log.error('Could not create folder with name: {}. Error: {}'.format(self.name, e))
                 to_folder = Path()  # fallback to the same folder
+        else:
+            if not isinstance(to_folder, Path):
+                to_folder = Path(to_folder)
 
         if not to_folder.exists():
             to_folder.mkdir()
